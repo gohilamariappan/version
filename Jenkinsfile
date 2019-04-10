@@ -9,7 +9,7 @@ stage('checkout')
         }
  stage('Creation'){
          properties([parameters([choice(choices: ['ubuntu16', 'ubuntu18'], description: '', name: 'version')])])
-        sh  '''if [ ${version}==ubuntu16 ]; then
+        sh  '''if [ ${version} = ubuntu16 ]; then
                {
 		cd /var/lib/jenkins/workspace/terraformmodules/awsubuntu16/
                 
