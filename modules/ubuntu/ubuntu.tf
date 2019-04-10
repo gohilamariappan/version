@@ -8,7 +8,7 @@ resource "aws_instance" "ubuntu18" {
 
   tags {
 
-    Name = "ubuntu16"
+    Name = "${var.tag}"
 
   }
 }
