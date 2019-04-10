@@ -8,3 +8,7 @@ variable "ami_id" {
 variable "instance" {
 
 }
+variable "tag" {
+
+  default="ubuntu"
+}
