@@ -33,7 +33,7 @@ stage('checkout')
 	                           terraform plan  -var aws_access_key_id=${AWS_ACCESS_KEY_ID} -var aws_secret_access_key=${AWS_SECRET_ACCESS_KEY} -out=plan
 	
                                    terraform apply  plan
-			    rm /var/lib/jenkins/workspace/terraformmodules/awsubuntu16/terraform.tfstate
+			    rm /var/lib/jenkins/workspace/terraformmodules/awsubuntu18/terraform.tfstate
 				   
                                    
                 }
