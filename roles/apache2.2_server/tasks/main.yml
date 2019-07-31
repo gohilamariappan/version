@@ -1,0 +1,57 @@
+---
+- name: Download Zlib 
+  get_url:
+    url: http://www.zlib.net/zlib-1.2.11.tar.gz
+    dest: /tmp/zlib-1.2.11.tar.gz
+    
+- name: Unarchive a file
+  unarchive:
+    src: /tmp/zlib-1.2.11.tar.gz
+    dest: /tmp/
+
+- name: update the packages
+  shell: |
+      cd zlib-1.2.11/
+      bash configure --prefix=/usr/local
+      make
+      make install
+  become: yes
+
+
+- name: Download apache2.2
+  get_url:
+    url: http://archive.apache.org/dist/httpd/httpd-2.2.34.tar.gz
+    dest: /tmp/httpd-2.2.34.tar.gz
+
+- name: Unarchive a file
+  unarchive:
+    src: /tmp/httpd-2.2.34.tar.gz
+    dest: /tmp/
+- name: update the packages
+  shell: |
+      cd httpd-2.2.34/
+      bash configure  --prefix=/usr/local/apache2 --enable-mods-shared=all --enable-deflate --enable-proxy --enable-proxy-balancer --enable-proxy-http
+      make
+      make install
+  become: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

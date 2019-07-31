@@ -1,0 +1,45 @@
+---
+ - name: install apache2
+   apt: name=libapache2-mod-security2 state=latest
+   become: yes
+
+
+ - name: enabled mod_security
+   apache2_module: name=security2 state=present
+   notify:
+      - restart apache2
+   become: yes
+
+
+ - name: copy the modsecurity.conf
+   shell: cp /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
+
+ - name: Editing the modsecurity.conf
+   replace:
+     path: /etc/modsecurity/modsecurity.conf
+     regexp: 'SecResponseBodyAccess On'
+     replace: "SecResponseBodyAccess Off"
+
+ - name: Insert a line at the end of a file.
+   lineinfile:
+     path: /etc/modsecurity/modsecurity.conf
+     line: SecRuleEngine On
+ - name: copy the modsecurity.conf
+   shell: cp -rpf /usr/share/modsecurity-crs/rules/* /usr/share/modsecurity-crs/activated_rules/
+
+ - name: Add the lines in security.conf
+   lineinfile:
+    dest: /etc/apache2/mods-enabled/security2.conf
+   # regexp: 'IncludeOptional /etc/modsecurity/*.conf'
+    insertafter: SecDataDir /var/cache/modsecurity
+    line: |
+       IncludeOptional /usr/share/modsecurity-crs/*.conf
+       IncludeOptional /usr/share/modsecurity-crs/rules/*.conf
+   check_mode: no
+   ignore_errors: yes
+
+   notify:
+     - restart apache2
+   become: yes
+
+

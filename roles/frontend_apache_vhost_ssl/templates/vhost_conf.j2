@@ -1,0 +1,27 @@
+<VirtualHost *:{{ http_port }}>
+
+        ServerName {{ domain_name }}
+        ServerAdmin webmaster@localhost
+        SSLEngine On
+        SSLCertificateFile /etc/ssl/{{ domain_name }}.crt
+        SSLCertificateKeyFile /etc/ssl/{{ domain_name }}.key
+        SSLCertificateChainFile /etc/ssl/{{ domain_name }}/gd_bundle.crt
+
+
+        DocumentRoot {{ app_path }}
+        DirectoryIndex index.html
+
+        ProxyPreserveHost on
+         <Directory {{ app_path }}>
+                Options ExecCGI MultiViews IncludesNoExec FollowSymLinks
+                Order allow,deny
+                Allow from all
+                AllowOverride All
+                Require all granted
+        </Directory>
+
+
+        Errorlog ${APACHE_LOG_DIR}/{{ domain_name }}-ssl.error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}-ssl.access.log combined
+
+</VirtualHost>

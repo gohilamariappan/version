@@ -1,0 +1,27 @@
+---
+# tasks file for php
+  - name: Install python-properties
+    apt: name=python3-software-properties state=latest
+    become: yes
+  - name: update the packages
+    shell: |
+      add-apt-repository ppa:ondrej/php
+      apt-get update
+    become: yes
+  - name: Install php
+    apt: name=php state=present
+    become: yes
+  - name: Install php extensions
+    apt: name= {{ item }} state=present
+    with_items:
+      - "{{ version }}-bcmath"
+      - "{{ version }}-ctype"
+      - "{{ version }}-openssl"
+      - "{{ version }}-xml"
+      - "{{ version }}-curl"
+      - "{{ version }}-mbstring"
+      - "{{ version }}-pdo"
+      - "{{ version }}-tokenizer"
+      - "{{ version }}-json"
+    become: yes
+

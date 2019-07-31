@@ -1,0 +1,9 @@
+---
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: https://docker.idc.tarento.com
+    username: dockeradmin
+    password: docker123%%Pass
+    reauthorize: yes
+
+

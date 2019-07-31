@@ -1,0 +1,15 @@
+<VirtualHost *:{{ http_port }}>
+
+        ServerName {{ domain_name }}
+        ServerAdmin webmaster@localhost
+
+        
+        ProxyPreserveHost on
+
+        ProxyPass / http://localhost:{{ app_port }}/
+        ProxyPassReverse / http://localhost:{{ app_port }}/
+
+        Errorlog ${APACHE_LOG_DIR}/{{ domain_name }}.error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}.access.log combined
+
+</VirtualHost>

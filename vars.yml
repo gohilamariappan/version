@@ -1,0 +1,7 @@
+---
+datasource_user: jdbc:mysql://localhost:3306/retail_store
+datasource_url: root
+datasource_pwd: Rain123#$
+elastic_url: 3.121.107.102
+elastic_user: elastic
+elastic_pwd: Elastic123

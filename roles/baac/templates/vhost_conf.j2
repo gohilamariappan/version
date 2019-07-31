@@ -1,0 +1,21 @@
+<VirtualHost *:{{ http_port }}>
+
+        ServerName {{ domain_name }}
+        ServerAdmin webmaster@localhost
+
+        DocumentRoot {{ app_path }}
+        DirectoryIndex index.html
+
+        ProxyPreserveHost on
+<Directory {{ app_path }}>
+                Options ExecCGI MultiViews IncludesNoExec FollowSymLinks
+                Order allow,deny
+                Allow from all
+                AllowOverride All
+                Require all granted
+        </Directory>
+
+        Errorlog ${APACHE_LOG_DIR}/{{ domain_name }}.error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}.access.log combined
+
+</VirtualHost>

@@ -1,0 +1,18 @@
+---
+
+- hosts: local
+  become: yes
+  vars_files:
+     - "var/{{var_file}}"
+
+  roles:
+    - backend_apache_vhost
+    - backend_apache_vhost_ssl
+    - frontend_apache_vhost
+    - frontend_apache_vhost_ssl
+    - backend_nginx_vhost
+    - backend_nginx_vhost_ssl
+    - frontend_nginx_vhost
+    - frontend_nginx_vhost_ssl
+
+

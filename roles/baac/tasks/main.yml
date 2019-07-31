@@ -1,0 +1,26 @@
+---
+- include_vars: vars.yml
+
+- name: Copy sample config file
+  local_action: template src=/home/master/testing_back/retail-analytics-core-master-management/src/main/resources/application.properties.j2 dest=/home/master/testing_back/retail-analytics-core-master-management/src/main/resources/application.properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+<VirtualHost *:{{ http_port }}>
+
+        ServerName {{ domain_name }}
+        ServerAdmin webmaster@localhost
+        SSLEngine On
+SSLCertificateFile /etc/ssl/{{ domain_name }}.crt
+SSLCertificateKeyFile /etc/ssl/{{ domain_name }}.key
+SSLCertificateChainFile /etc/ssl/{{ domain_name }}/gd_bundle.crt
+
+
+        ProxyPreserveHost on
+        ProxyPass / http://localhost:{{ app_port }}/
+        ProxyPassReverse / http://localhost:{{ app_port }}/
+      
+
+        Errorlog ${APACHE_LOG_DIR}/{{ domain_name }}-ssl.error.log
+        CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}-ssl.access.log combined
+
+</VirtualHost>

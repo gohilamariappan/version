@@ -1,0 +1,32 @@
+---
+ - name: Copy sample config file
+#   local_action: template src=vhost_conf.j2 dest=/etc/nginx/sites-enabled/{{domain_name}}.conf
+
+   template:
+     src= vhost_conf.j2
+     dest= /etc/apache2/sites-enabled/{{domain_name}}.conf
+   notify:
+     -restart apache2
+   become: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
